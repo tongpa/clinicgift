@@ -511,7 +511,7 @@ class VisitService(DeclarativeBase):
                  start_date =datetime.now(), service_date=None,finish_date=None, id_visit=None,id_person =None):
         self.id_service = id_service if (id_service and len(id_service) >0) else None
         self.id_clinic =  id_clinic if (id_clinic and len(id_clinic) >0) else None
-        self.id_service_point = id_service_point if (id_service and len(id_service_point) >0) else None
+        self.id_service_point = id_service_point if (id_service_point and len(id_service_point) >0) else None
         self.id_doctor = id_doctor if (id_doctor and len(id_doctor) >0) else None
         self.start_date = start_date
         self.service_date = service_date
