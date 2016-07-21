@@ -1,0 +1,12 @@
+eclipse.preferences.version=1
+encoding//clinicgift/controllers/loadmodelcontroller.py=utf-8
+encoding//clinicgift/controllers/personcontroller.py=utf-8
+encoding//clinicgift/controllers/root.py=utf-8
+encoding//clinicgift/controllers/showdesktopcontroller.py=utf-8
+encoding//clinicgift/controllers/visitcontroller.py=utf-8
+encoding//clinicgift/controllers/vitalsigncontroller.py=utf-8
+encoding//clinicgift/model/__init__.py=utf-8
+encoding//clinicgift/model/auth.py=utf-8
+encoding//clinicgift/model/clinic.py=utf-8
+encoding//clinicgift/public/javascript/clinic/panel/person/personaddressview.js=UTF-8
+encoding//clinicgift/templates/master.html=UTF-8
