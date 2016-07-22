@@ -33,7 +33,7 @@
 		    text: 'Search',
 		    anchor: '100%',
 		    store: main.store,
-		    handler: main.searchdata
+		    handler: function (bt, ev){ main.searchdata(main);}
 		});
 		
 		main.dockedItems= [{
@@ -60,8 +60,23 @@
 		main.callParent();
 		main.getSelectionModel().on('selectionchange', main.onSelectChange, main);
 	},
-	searchdata : function(bt,ev){
-		this.store.load();
+	searchdata : function(cmp){
+		
+		cmp.store.load({
+			params : {
+				keysearch : cmp.search.getValue()
+			},
+			callback :  function(records, operation, success) {
+		    	 
+		    	
+		    	if(success){
+		    		
+		    	}
+		         
+		    },
+			 
+			scope:this
+		});
 	},
 	onSelectChange: function(selModel, selections){
 		//debugger;

@@ -419,7 +419,7 @@ class Person(DeclarativeBase):
         if search is None : 
             search = ''
         query = DBSession.query(cls).filter(cls.firstname.like('%' + str(search) + '%'));
-        if idsearch is None : 
+        if idsearch : 
             query = query.filter(cls.id_person == idsearch);
         
         
