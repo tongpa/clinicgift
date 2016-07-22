@@ -1,4 +1,4 @@
-﻿Ext.define('clinic.panel.visit.ListSearchItemView',{
+﻿Ext.define('clinic.panel.order.ListSearchItemView',{
 	extend: 'Ext.grid.Panel'
 	,alias: 'widget.listsearchitemview'
     ,animCollapse:false
@@ -21,7 +21,7 @@
 		 
 		
 		main.store = Ext.create('clinic.store.ItemData');
-		main.textsearch = Ext.create('Ext.form.field.Text',{ ,name:'searchItem',hideLabel : true,emptyText: 'Search Item'});
+		main.textsearch = Ext.create('Ext.form.field.Text',{anchor: '100%', name:'searchItem',hideLabel : true,emptyText: 'Search Item'});
 		main.searchbt = Ext.create('Ext.Button', {
 		    text: 'Search',
 		    anchor: '100%',

@@ -24,6 +24,7 @@
 		});
 		
 		
+		
         return [
                 new Ext.create('clinic.module.SystemStatus'),
                 new Ext.create('clinic.module.GridWindow'),
@@ -31,7 +32,8 @@
                 new Ext.create('clinic.module.AppointmentWindow'),
                 new Ext.create('clinic.module.VisitWindow'),
                 new Ext.create('clinic.module.GridPatientServiceWindow'),
-                new Ext.create('clinic.module.VitalSignWindow') 
+                new Ext.create('clinic.module.VitalSignWindow') ,
+                new Ext.create('clinic.module.OrderWindow')
         ];
     },
     getDesktopConfig: function () {

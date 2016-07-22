@@ -1,4 +1,4 @@
-﻿Ext.define('clinic.model.OrderData',{
+﻿Ext.define('clinic.model.Order',{
 	extend: 'Ext.data.Model',
     idProperty: 'id_order',    
     fields: [

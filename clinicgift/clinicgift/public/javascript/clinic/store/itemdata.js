@@ -1,7 +1,7 @@
 ﻿Ext.define('clinic.store.ItemData',{
 	extend : 'clinic.store.MasterStore',
-	requires: 'clinic.model.ItemData',
-	model : 'clinic.model.ItemData',
+	requires: 'clinic.model.Item',
+	model : 'clinic.model.Item',
 	alias: ['widget.itemData'],
 	storeId : 'itemStore', 
 	autoLoad : true,
