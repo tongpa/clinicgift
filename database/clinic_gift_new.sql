@@ -2,15 +2,15 @@
 Navicat MySQL Data Transfer
 
 Source Server         : localhost
-Source Server Version : 50525
+Source Server Version : 50505
 Source Host           : localhost:3306
 Source Database       : clinic_gift_new
 
 Target Server Type    : MYSQL
-Target Server Version : 50525
+Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2016-07-21 08:37:31
+Date: 2016-07-22 18:16:34
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -152,18 +152,24 @@ CREATE TABLE `item` (
   `nickname` varchar(255) DEFAULT NULL,
   `genericname` varchar(255) DEFAULT NULL,
   `id_item_type` int(11) NOT NULL,
-  `price` decimal(10,0) DEFAULT NULL,
+  `price` decimal(10,2) DEFAULT NULL,
   `unit` varchar(255) DEFAULT NULL,
   `create_date` timestamp NULL DEFAULT NULL,
   `update_date` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id_item`),
   KEY `ix_item_id_item_type` (`id_item_type`),
   CONSTRAINT `item_ibfk_1` FOREIGN KEY (`id_item_type`) REFERENCES `item_type` (`id_item_type`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of item
 -- ----------------------------
+INSERT INTO `item` VALUES ('1', 'Paracetamon', 'Paracetamon', 'Paracetamon', '1', '0.20', 'เม็ด', '2016-07-22 18:00:40', null);
+INSERT INTO `item` VALUES ('2', 'Amoxy', 'Amoxy', 'Amoxy', '1', '0.40', 'เม็ด', '2016-07-22 18:00:40', null);
+INSERT INTO `item` VALUES ('3', 'ปรึกษา', 'ปรึกษา', 'ปรึกษา', '2', '500.00', null, '2016-07-22 18:00:40', null);
+INSERT INTO `item` VALUES ('4', 'ค่าฉีดยา', 'ค่าฉีดยา', 'ค่าฉีดยา', '2', '50.00', null, '2016-07-22 18:00:40', null);
+INSERT INTO `item` VALUES ('5', 'เข็มฉีดยาเบอร์ 1', 'เข็มฉีดยาเบอร์ 1', 'เข็มฉีดยาเบอร์ 1', '3', '10.00', null, '2016-07-22 18:00:40', null);
+INSERT INTO `item` VALUES ('6', 'เข็มฉีดยาเบอร์ 2', 'เข็มฉีดยาเบอร์ 2', 'เข็มฉีดยาเบอร์ 2', '3', '12.00', null, '2016-07-22 18:00:40', null);
 
 -- ----------------------------
 -- Table structure for item_type
@@ -175,11 +181,16 @@ CREATE TABLE `item_type` (
   `create_date` timestamp NULL DEFAULT NULL,
   `update_date` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id_item_type`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of item_type
 -- ----------------------------
+INSERT INTO `item_type` VALUES ('1', 'ยา', '2016-07-22 17:56:40', null);
+INSERT INTO `item_type` VALUES ('2', 'บริการ', '2016-07-22 17:56:40', null);
+INSERT INTO `item_type` VALUES ('3', 'เวชภัณฑ์', '2016-07-22 17:56:40', null);
+INSERT INTO `item_type` VALUES ('4', 'LAB', '2016-07-22 17:56:40', null);
+INSERT INTO `item_type` VALUES ('5', 'X-Ray', '2016-07-22 17:56:40', null);
 
 -- ----------------------------
 -- Table structure for map_doctor_clinic
@@ -305,7 +316,7 @@ CREATE TABLE `person` (
   CONSTRAINT `person_ibfk_5` FOREIGN KEY (`id_race`) REFERENCES `nation` (`id_nation`),
   CONSTRAINT `person_ibfk_6` FOREIGN KEY (`id_religion`) REFERENCES `religion` (`id_religion`),
   CONSTRAINT `person_ibfk_7` FOREIGN KEY (`id_bloodgroup`) REFERENCES `bloodgroup` (`id_bloodgroup`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of person
@@ -441,7 +452,7 @@ CREATE TABLE `tg_user` (
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `user_name` (`user_name`),
   UNIQUE KEY `email_address` (`email_address`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of tg_user
@@ -484,7 +495,7 @@ CREATE TABLE `visit` (
   PRIMARY KEY (`id_visit`),
   KEY `ix_visit_id_person` (`id_person`),
   CONSTRAINT `visit_ibfk_1` FOREIGN KEY (`id_person`) REFERENCES `person` (`id_person`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of visit
@@ -493,6 +504,10 @@ INSERT INTO `visit` VALUES ('3', null, null, '2', null, null, '', '2016-07-20 08
 INSERT INTO `visit` VALUES ('4', null, null, '2', null, null, '', '2016-07-20 08:34:39', null);
 INSERT INTO `visit` VALUES ('5', null, null, '2', null, null, '', '2016-07-20 08:36:30', null);
 INSERT INTO `visit` VALUES ('6', null, null, '2', null, null, '', '2016-07-20 08:38:14', null);
+INSERT INTO `visit` VALUES ('7', null, null, '2', null, null, '', '2016-07-21 04:56:39', null);
+INSERT INTO `visit` VALUES ('8', null, null, '2', null, null, '', '2016-07-21 12:28:24', null);
+INSERT INTO `visit` VALUES ('9', null, null, '2', null, null, '', '2016-07-21 12:30:06', null);
+INSERT INTO `visit` VALUES ('10', null, null, '2', null, null, '', '2016-07-22 01:47:12', null);
 
 -- ----------------------------
 -- Table structure for visit_billing
@@ -571,7 +586,7 @@ CREATE TABLE `visit_service` (
   CONSTRAINT `visit_service_ibfk_3` FOREIGN KEY (`id_service_point`) REFERENCES `service_point` (`id_service_point`),
   CONSTRAINT `visit_service_ibfk_4` FOREIGN KEY (`id_visit`) REFERENCES `visit` (`id_visit`),
   CONSTRAINT `visit_service_ibfk_5` FOREIGN KEY (`id_person`) REFERENCES `person` (`id_person`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of visit_service
@@ -580,6 +595,11 @@ INSERT INTO `visit_service` VALUES ('2', null, '2', '1', '2016-07-20 15:27:09', 
 INSERT INTO `visit_service` VALUES ('3', null, '2', '1', '2016-07-20 15:27:09', null, null, '4', '2', '2016-07-20 08:34:39', null);
 INSERT INTO `visit_service` VALUES ('4', null, '2', '1', '2016-07-20 15:27:09', null, null, '5', '2', '2016-07-20 08:36:30', null);
 INSERT INTO `visit_service` VALUES ('5', null, '2', '1', '2016-07-20 15:27:09', null, null, '6', '2', '2016-07-20 08:38:14', null);
+INSERT INTO `visit_service` VALUES ('6', null, '2', '1', '2016-07-21 09:40:19', null, null, '7', '2', '2016-07-21 04:56:39', null);
+INSERT INTO `visit_service` VALUES ('7', null, '2', '1', '2016-07-21 19:27:25', null, null, '8', '2', '2016-07-21 12:28:24', null);
+INSERT INTO `visit_service` VALUES ('8', null, '2', '1', '2016-07-21 19:29:46', null, null, '9', '2', '2016-07-21 12:30:06', null);
+INSERT INTO `visit_service` VALUES ('9', null, '2', '1', '2016-07-22 19:29:46', null, null, '10', '2', '2016-07-22 01:47:12', null);
+INSERT INTO `visit_service` VALUES ('10', null, '3', '1', '2016-07-22 16:06:30', null, null, '10', '2', '2016-07-22 09:51:33', null);
 
 -- ----------------------------
 -- Table structure for visit_vitalsign
@@ -604,7 +624,7 @@ CREATE TABLE `visit_vitalsign` (
   PRIMARY KEY (`id_vitalsign`),
   KEY `ix_visit_vitalsign_id_visit` (`id_visit`),
   CONSTRAINT `visit_vitalsign_ibfk_1` FOREIGN KEY (`id_visit`) REFERENCES `visit` (`id_visit`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of visit_vitalsign
@@ -615,3 +635,5 @@ INSERT INTO `visit_vitalsign` VALUES ('3', '5', '75', '45', '12', '12', '12', '1
 INSERT INTO `visit_vitalsign` VALUES ('4', '5', '55', '44', '55', '66', '44', '55', '11', '22', '3', '44', '55', '2016-07-20 11:12:47', null);
 INSERT INTO `visit_vitalsign` VALUES ('5', '5', '88', '55', '88', '44', '55', '66', '11', '22', '3', '44', '55', '2016-07-20 11:14:50', null);
 INSERT INTO `visit_vitalsign` VALUES ('6', '5', '11', '22', '55', '44', '55', '88', '888', '444', '888', '777', '888', '2016-07-20 11:15:09', null);
+INSERT INTO `visit_vitalsign` VALUES ('7', '8', '55', '55', '55', '55', '55', '55', '88', '88', '88', '88', '88', '2016-07-21 12:30:50', '2016-07-21 12:30:55');
+INSERT INTO `visit_vitalsign` VALUES ('8', '10', '222', '333', '444', '555', '66', '77', '55', '56', '56', '56', '45', '2016-07-22 09:11:29', null);
