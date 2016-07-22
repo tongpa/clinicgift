@@ -18,6 +18,12 @@
 	},
 	getModules : function(){
 		console.log('module');
+		
+		var serviceindoctor = new Ext.create('clinic.module.GridPatientServiceWindow',{
+			id:'gridpatientservice-win'
+		});
+		
+		
         return [
                 new Ext.create('clinic.module.SystemStatus'),
                 new Ext.create('clinic.module.GridWindow'),
@@ -25,7 +31,7 @@
                 new Ext.create('clinic.module.AppointmentWindow'),
                 new Ext.create('clinic.module.VisitWindow'),
                 new Ext.create('clinic.module.GridPatientServiceWindow'),
-                new Ext.create('clinic.module.VitalSignWindow')
+                new Ext.create('clinic.module.VitalSignWindow') 
         ];
     },
     getDesktopConfig: function () {
@@ -43,11 +49,11 @@
                 data: [
                        { name: 'Person', iconCls: 'accordion-shortcut', module: 'person-win'},
                        { name: 'Appointment', iconCls: 'grid-shortcut', module: 'appointment-win' },                       
-                       { name: 'Grid Window', iconCls: 'grid-shortcut', module: 'grid-win' },                    
-                       { name: 'Visit Patient', iconCls: 'accordion-shortcut', module: 'visit-win' },
-                       { name: 'Patient in Service', iconCls: 'notepad-shortcut', module: 'gridpatientservice-win' },
-                       { name: 'System Status', iconCls: 'cpu-shortcut', module: 'systemstatus'},
-                       { name: 'Vital Sign', iconCls: 'accordion-shortcut', module: 'vitalsign-win'}
+                       //{ name: 'Grid Window', iconCls: 'grid-shortcut', module: 'grid-win' },                    
+                       //{ name: 'Visit Patient', iconCls: 'accordion-shortcut', module: 'visit-win' },
+                       { name: 'Patient in Screen', iconCls: 'notepad-shortcut', module: 'gridpatientservice-win' },
+                       //{ name: 'System Status', iconCls: 'cpu-shortcut', module: 'systemstatus'},
+                       //{ name: 'Vital Sign', iconCls: 'accordion-shortcut', module: 'vitalsign-win'}
                 ]
             }),
 

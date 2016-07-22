@@ -8,7 +8,7 @@
 	       ],
 	alias: 'widget.gridwindow',
 	id:'gridpatientservice-win',
-
+	showmodule : 'vitalsign-win',
 	init : function(){
         this.launcher = {
             text: 'Patient Service',
@@ -17,9 +17,10 @@
     },
 
     createWindow : function(){
-    	
+    	 
+    	var main = this;
         var desktop = this.app.getDesktop();
-        var win = desktop.getWindow('gridpatientservice-win');
+        var win = desktop.getWindow(this.id);//'gridpatientservice-win');
         console.log('win' + (!win) );
         if(!win){
         	
@@ -27,18 +28,15 @@
         		
         		listeners : {
         			showVisit : function(cmp,record) {
-    					console.log('showVisit');
-    					var vitalsign_win = desktop.app.getModule('vitalsign-win');
+        				var vitalsign_win = desktop.app.getModule(main.showmodule);
     					vitalsign_win.loaddata(record);
     					vitalsign_win.createWindow(record).show();
-    					//debugger;
-    		     //       this.parentForm.refreshOther();
     		        }
     			}
         	});
         	 
             win = desktop.createWindow({
-                id: 'gridpatientservice-win',
+                id: main.id,//'gridpatientservice-win',
                 title:'Patient Service',
                 width:350,
                 height:480,

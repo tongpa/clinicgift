@@ -353,16 +353,19 @@ class Person(DeclarativeBase):
 
     id_person = Column(Integer, autoincrement=True, primary_key=True)
     id_prefix = Column( Integer,ForeignKey('prefix.id_prefix'), nullable=False, index=True) 
+    prefix = relation('Prefix', backref='person_id_prefix')
     firstname = Column(Unicode(255))
     lastname = Column(Unicode(255))
     nickname = Column(Unicode(255))
     id_gender = Column( Integer,ForeignKey('gender.id_gender'), nullable=False, index=True) 
+    gender = relation('Gender', backref='person_id_gender')
     birthdate = Column(DateTime)
     id_marriage =  Column( Integer,ForeignKey('marriage.id_marriage'), nullable=False, index=True) 
     id_nation = Column( Integer,ForeignKey('nation.id_nation'), nullable=False, index=True) 
     id_race = Column( Integer,ForeignKey('nation.id_nation'), nullable=False, index=True) 
     id_religion = Column( Integer,ForeignKey('religion.id_religion'), nullable=False, index=True) 
     id_bloodgroup =Column( Integer,ForeignKey('bloodgroup.id_bloodgroup'), nullable=False, index=True) 
+    bloodgroup = relation('BloodGroup', backref='person_id_bloodgroup')
     bloodrh = Column(Unicode(255))
     drugalert = Column(Unicode(255))
     pid = Column(Unicode(255))
@@ -409,9 +412,18 @@ class Person(DeclarativeBase):
     
       
     @classmethod
-    def getbysearch(cls, search="", page=0, page_size=None): 
-    
+    def getbysearch(cls, search="", idsearch="", page=0, page_size=None): 
+        
+        print 'search %s' %(search)
+        print 'idsearch %s' %(idsearch)
+        if search is None : 
+            search = ''
         query = DBSession.query(cls).filter(cls.firstname.like('%' + str(search) + '%'));
+        if idsearch is None : 
+            query = query.filter(cls.id_person == idsearch);
+        
+        
+        
         query_total = query;                
         
         if page_size:
@@ -420,14 +432,24 @@ class Person(DeclarativeBase):
             page = 0 if page < 0 else page;
             query = query.offset(page*page_size)
         
-        data = query.all();  
+        values = query.all();  
         total = query_total.count();
           
-        #data = [];
-        #for v in values:
-        #    data.append(v.to_json());
+        data = [];
+        for v in values:
+            data.append(v.to_json());
                          
         return data,total;
+    
+    def to_json(self):
+        dict = {
+                'id_person':self.id_person ,'id_prefix':self.id_prefix , 'firstname' :self.firstname, 'lastname':self.lastname ,    
+                'nickname':self.nickname, 'id_gender' :self.id_gender, 'birthdate' :self.birthdate, 'id_marriage' :self.id_marriage, 
+                'id_nation':self.id_nation, 'id_race' :self.id_race, 'id_religion':self.id_religion, 'id_bloodgroup':self.id_bloodgroup,
+                'bloodrh':self.bloodrh, 'drugalert' :self.drugalert, 'pid':self.pid , 'email' :self.email,
+                'prefix': self.prefix.description, 'gender' : self.gender.description, 'bloodgroup': self.bloodgroup.description
+                }
+        return dict;
       
 class Visit(DeclarativeBase):
 
@@ -713,3 +735,25 @@ class Item(DeclarativeBase):
 
     def __unicode__(self):
         return self.itemname
+
+    @classmethod
+    def getbysearch(cls, search="", idsearch="" ,page=0, page_size=None): 
+        
+        if search is None:
+            search = ''
+        query = DBSession.query(cls).filter(cls.itemname.like('%' + str(search) + '%') );
+        if idsearch and len(idsearch) >0 :
+            query = query.filter(cls.id_item == str(idsearch) );
+            
+        query_total = query;                
+        
+        if page_size:
+            query = query.limit(page_size)
+        if page: 
+            page = 0 if page < 0 else page;
+            query = query.offset(page*page_size)
+        
+        data = query.all();  
+        total = query_total.count();
+                         
+        return data,total;

@@ -26,7 +26,7 @@
 			main.idvisit = Ext.create('Ext.form.field.Hidden',{ name:'id_visit'});
 			main.service = Ext.create('Ext.form.ComboBox',{anchor: '-5', allowBlank:false,name:'service',fieldLabel:'Service',emptyText: 'Service'});
 			main.searchbt = Ext.create('Ext.Button', {
-			    text: 'Search',
+			    text: 'Refresh',
 			    anchor: '100%',
 			    handler: function(bt,ev){
 			    	main.searchdata(main.idvisit.getValue());

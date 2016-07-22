@@ -1,6 +1,6 @@
-﻿Ext.define('clinic.panel.visit.ListPatientInServiceView',{
+﻿Ext.define('clinic.panel.visit.ListSearchItemView',{
 	extend: 'Ext.grid.Panel'
-	,alias: 'widget.listpatientinserviceview'
+	,alias: 'widget.listsearchitemview'
     ,animCollapse:false
     ,constrainHeader:true
     //,scrollable:true
@@ -15,21 +15,13 @@
 		var main = this;
 		main.columns = [
 		                	new Ext.grid.RowNumberer(),
-		                	{ text: 'Name', dataIndex: 'patient_name',flex:2 },
-		                	{ text: 'Time', dataIndex: 'start_date',flex:2 }
+		                	{ text: 'Name', dataIndex: 'itemname',flex:2 }
 		                ];
 		
-		main.servicepointstore = new Ext.create('clinic.store.ServicePointData');
+		 
 		
-		main.store = new Ext.create('clinic.store.ServiceData');
-		main.service = Ext.create('Ext.form.ComboBox',{anchor: '-5', allowBlank:false,name:'service',fieldLabel:'Service',
-			store: main.servicepointstore,
-		    queryMode: 'local',
-		    displayField: 'description',
-		    valueField: 'id',
-		    blankText : 'Service'
-			//emptyText: 'Service'
-				});
+		main.store = Ext.create('clinic.store.ItemData');
+		main.textsearch = Ext.create('Ext.form.field.Text',{ ,name:'searchItem',hideLabel : true,emptyText: 'Search Item'});
 		main.searchbt = Ext.create('Ext.Button', {
 		    text: 'Search',
 		    anchor: '100%',
@@ -50,7 +42,7 @@
 		    },
 		    items: [{
 		        flex: 2,
-		        items:[main.service]
+		        items:[main.textsearch]
 		    },
 		    {
 		        items:[main.searchbt]
@@ -63,18 +55,18 @@
 		main.getSelectionModel().on('selectionchange', main.onSelectChange, main);
 	},
 	onSelectChange: function(selModel, selections){
-		//debugger;
+		 
 		this.fireEvent('showVisit', this,selections[0]);
-        //this.down('#delete').setDisabled(selections.length === 0);
+     
     
 	},
 	searchdata : function(cmp){
 		console.log('search patient in service');
 		this.getSelectionModel().clearSelections();
-		//debugger;
+		 
 		this.store.load({
 			params : {
-				idsearch : cmp.service.getValue()
+				idsearch : cmp.textsearch.getValue()
 			},
 			callback :  function(records, operation, success) {
 		    	 

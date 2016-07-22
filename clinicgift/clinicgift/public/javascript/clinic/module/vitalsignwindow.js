@@ -23,7 +23,16 @@
         
         if(!win){
         	 
-        	var vitalsign = Ext.create('clinic.panel.vitalsign.PatientVitalSignView');
+        	var vitalsign = Ext.create('clinic.panel.vitalsign.PatientVitalSignView',{
+        		listeners : {
+			        sendPatient : function(cmp,record){
+			        	console.log('callvisit');
+						var visit_win = desktop.app.getModule('visit-win');
+						visit_win.loaddata(record);
+						visit_win.createWindow(record).show();
+			        }
+        		}
+        	});
         	vitalsign.initData(record);
             win = desktop.createWindow({
                 id: 'vitalsign-win',

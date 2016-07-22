@@ -3,7 +3,7 @@
 	alias: 'widget.vitalsignview',
 	scrollable:true
 	,border : false
-	,bodyPadding: 5
+	//,bodyPadding: 5
 	,defaults: {
    	    labelWidth: 120,
         anchor: '100%',
@@ -44,7 +44,8 @@
 		
 		
 		main.fieldset = Ext.create('Ext.form.FieldSet',{
-			title: 'Visit',
+			title: 'Vital Sign',
+			
 			defaults: {
 				anchor: '100%'
 			},
@@ -108,9 +109,40 @@
 			}
 		});
 		
+		main.btnewvitalsign = Ext.create('Ext.Button',{		 
+			text : 'Create Vital Sign',
+			handler : function(bt,ev){
+				main.getForm().reset();
+				main.idvisit.setValue(main.id_visit);
+				 
+			}
+		});
+		
+		main.dockedItems= [{
+		    xtype: 'toolbar',
+		    dock: 'top',
+		    layout: {
+		        type: 'hbox',
+		        align: 'stretch'
+		    },defaults: {
+		        border: false,
+		        xtype: 'panel',		       
+		        layout: 'anchor'
+		    },
+		    items: [{
+		        flex: 2,
+		        items:[]
+		    },
+		    {
+		        items:[main.btnewvitalsign]
+		    }
+		    ]
+		}];
+		
 		main.items = [main.fieldset];
 		main.buttons = [ main.btsave];
 		
 		main.callParent();
 	}
+	
 });

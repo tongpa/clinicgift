@@ -73,7 +73,7 @@ class ScriptModelController(BaseController):
     
     @expose('json')
     def getPersonData(self, *args, **kw):
-        self.data,self.len = model.Person.getbysearch();
+        self.data,self.len = model.Person.getbysearch(search =kw.get('keysearch'),  idsearch = kw.get('idsearch'));
         return dict(clinic=self.data , total = self.len);
     
     
@@ -85,5 +85,10 @@ class ScriptModelController(BaseController):
     @expose('json')
     def getVitalSignData(self, *args, **kw):
         self.data,self.len = model.VisitVitalSign.getbysearch(idsearch = kw.get('idsearch'));
+        return dict(clinic=self.data , total = self.len);
+    
+    @expose('json')
+    def getItemData(self, *args, **kw):
+        self.data,self.len = model.Item.getbysearch(search =kw.get('keysearch'), idsearch = kw.get('idsearch'));
         return dict(clinic=self.data , total = self.len);
     

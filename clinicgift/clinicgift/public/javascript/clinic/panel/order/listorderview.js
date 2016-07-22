@@ -1,6 +1,6 @@
-﻿Ext.define('clinic.panel.visit.ListPatientInServiceView',{
+﻿Ext.define('clinic.panel.order.ListOrderView',{
 	extend: 'Ext.grid.Panel'
-	,alias: 'widget.listpatientinserviceview'
+	,alias: 'widget.listorderview'
     ,animCollapse:false
     ,constrainHeader:true
     //,scrollable:true
