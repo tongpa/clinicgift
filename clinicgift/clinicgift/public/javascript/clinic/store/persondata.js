@@ -4,7 +4,7 @@
 	model : 'clinic.model.Person',
 	alias: ['widget.personData'],
 	storeId : 'PersonStore', 
-	autoLoad : true,
+	autoLoad : false,
 	proxy : {
 		 
 		type: 'ajax',

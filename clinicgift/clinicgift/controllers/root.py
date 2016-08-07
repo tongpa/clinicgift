@@ -127,3 +127,10 @@ class RootController(BaseController):
         """
         flash(_('We hope to see you soon!'))
         return HTTPFound(location=came_from)
+    
+    
+    @expose('json')
+    def pandaShow(self):
+        import pandas as pd
+        df = pd.read_csv('D:\\tong\\code_py\\data_sc\\datascienceth\\pandas\\adult.csv')
+        return dict(df = df)

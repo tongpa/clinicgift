@@ -8,7 +8,7 @@ __all__ = ['Person', 'Visit', 'Appointment', 'VisitService', 'VisitVitalSign','V
            'MapDoctorClinic','Doctor','MapDoctor','Cause','ItemType'
            ]
 
-from sqlalchemy import Table, ForeignKey, Column,sql, func
+from sqlalchemy import Table, ForeignKey, Column,sql, func, update 
 from sqlalchemy.types import Unicode, Integer, DateTime, Text,Numeric,TIMESTAMP
 from sqlalchemy.orm import relation, synonym
 from datetime import date
@@ -20,8 +20,8 @@ class Prefix (DeclarativeBase):
 
     id_prefix = Column(Integer, autoincrement=True, primary_key=True)
     description = Column(Unicode(255))
-    create_date  = Column( TIMESTAMP(timezone=True), nullable=True ,default=sql.func.utc_timestamp())
-    update_date = Column(TIMESTAMP(timezone=True), nullable=True,onupdate=sql.func.utc_timestamp() )
+    create_date  = Column( TIMESTAMP(timezone=True), nullable=True ,default=sql.func.current_timestamp())
+    update_date = Column(TIMESTAMP(timezone=True), nullable=True,onupdate=sql.func.current_timestamp() )
     
     def __repr__(self):
         return '<Prefix: name=%s>' % repr(self.description)
@@ -46,8 +46,8 @@ class Gender (DeclarativeBase):
 
     id_gender = Column(Integer, autoincrement=True, primary_key=True)
     description = Column(Unicode(255))
-    create_date  = Column( TIMESTAMP(timezone=True), nullable=True ,default=sql.func.utc_timestamp())
-    update_date = Column(TIMESTAMP(timezone=True), nullable=True,onupdate=sql.func.utc_timestamp() )
+    create_date  = Column( TIMESTAMP(timezone=True), nullable=True ,default=sql.func.current_timestamp())
+    update_date = Column(TIMESTAMP(timezone=True), nullable=True,onupdate=sql.func.current_timestamp() )
     
     def __repr__(self):
         return '<Gender: name=%s>' % repr(self.description)
@@ -72,8 +72,8 @@ class Marriage (DeclarativeBase):
 
     id_marriage = Column(Integer, autoincrement=True, primary_key=True)
     description = Column(Unicode(255))
-    create_date  = Column( TIMESTAMP(timezone=True), nullable=True ,default=sql.func.utc_timestamp())
-    update_date = Column(TIMESTAMP(timezone=True), nullable=True,onupdate=sql.func.utc_timestamp() )
+    create_date  = Column( TIMESTAMP(timezone=True), nullable=True ,default=sql.func.current_timestamp())
+    update_date = Column(TIMESTAMP(timezone=True), nullable=True,onupdate=sql.func.current_timestamp() )
     
     def __repr__(self):
         return '<Marriage: name=%s>' % repr(self.description)
@@ -98,8 +98,8 @@ class Nation (DeclarativeBase):
 
     id_nation = Column(Integer, autoincrement=True, primary_key=True)
     description = Column(Unicode(255))
-    create_date  = Column( TIMESTAMP(timezone=True), nullable=True ,default=sql.func.utc_timestamp())
-    update_date = Column(TIMESTAMP(timezone=True), nullable=True,onupdate=sql.func.utc_timestamp() )
+    create_date  = Column( TIMESTAMP(timezone=True), nullable=True ,default=sql.func.current_timestamp())
+    update_date = Column(TIMESTAMP(timezone=True), nullable=True,onupdate=sql.func.current_timestamp() )
     
     def __repr__(self):
         return '<Nation: name=%s>' % repr(self.description)
@@ -124,8 +124,8 @@ class Religion (DeclarativeBase):
 
     id_religion = Column(Integer, autoincrement=True, primary_key=True)
     description = Column(Unicode(255))
-    create_date  = Column( TIMESTAMP(timezone=True), nullable=True ,default=sql.func.utc_timestamp())
-    update_date = Column(TIMESTAMP(timezone=True), nullable=True,onupdate=sql.func.utc_timestamp() )
+    create_date  = Column( TIMESTAMP(timezone=True), nullable=True ,default=sql.func.current_timestamp())
+    update_date = Column(TIMESTAMP(timezone=True), nullable=True,onupdate=sql.func.current_timestamp() )
     
     def __repr__(self):
         return '<Religion: name=%s>' % repr(self.description)
@@ -150,8 +150,8 @@ class BloodGroup (DeclarativeBase):
 
     id_bloodgroup = Column(Integer, autoincrement=True, primary_key=True)
     description = Column(Unicode(255))
-    create_date  = Column( TIMESTAMP(timezone=True), nullable=True ,default=sql.func.utc_timestamp())
-    update_date = Column(TIMESTAMP(timezone=True), nullable=True,onupdate=sql.func.utc_timestamp() )
+    create_date  = Column( TIMESTAMP(timezone=True), nullable=True ,default=sql.func.current_timestamp())
+    update_date = Column(TIMESTAMP(timezone=True), nullable=True,onupdate=sql.func.current_timestamp() )
     
     def __repr__(self):
         return '<Bloodgroup: name=%s>' % repr(self.description)
@@ -176,8 +176,8 @@ class Clinic (DeclarativeBase):
 
     id_clinic = Column(Integer, autoincrement=True, primary_key=True)
     description = Column(Unicode(255))
-    create_date  = Column( TIMESTAMP(timezone=True), nullable=True ,default=sql.func.utc_timestamp())
-    update_date = Column(TIMESTAMP(timezone=True), nullable=True,onupdate=sql.func.utc_timestamp() )
+    create_date  = Column( TIMESTAMP(timezone=True), nullable=True ,default=sql.func.current_timestamp())
+    update_date = Column(TIMESTAMP(timezone=True), nullable=True,onupdate=sql.func.current_timestamp() )
     
     def __repr__(self):
         return '<Clinic: name=%s>' % repr(self.description)
@@ -204,8 +204,8 @@ class MapDoctorClinic(DeclarativeBase):
     id_clinic = Column(Integer, unique=True, nullable=False)
     id_doctor = Column(Integer, unique=True, nullable=False)
     
-    create_date  = Column( TIMESTAMP(timezone=True), nullable=True ,default=sql.func.utc_timestamp())
-    update_date = Column(TIMESTAMP(timezone=True), nullable=True,onupdate=sql.func.utc_timestamp() )
+    create_date  = Column( TIMESTAMP(timezone=True), nullable=True ,default=sql.func.current_timestamp())
+    update_date = Column(TIMESTAMP(timezone=True), nullable=True,onupdate=sql.func.current_timestamp() )
     
     def __repr__(self):
         return '<MapDoctorClinic: name=%s>' % repr(self.id_doctor_clinic)
@@ -226,8 +226,8 @@ class Doctor (DeclarativeBase):
 
     id_doctor = Column(Integer, autoincrement=True, primary_key=True)
     description = Column(Unicode(255))
-    create_date  = Column( TIMESTAMP(timezone=True), nullable=True ,default=sql.func.utc_timestamp())
-    update_date = Column(TIMESTAMP(timezone=True), nullable=True,onupdate=sql.func.utc_timestamp() )
+    create_date  = Column( TIMESTAMP(timezone=True), nullable=True ,default=sql.func.current_timestamp())
+    update_date = Column(TIMESTAMP(timezone=True), nullable=True,onupdate=sql.func.current_timestamp() )
     
     def __repr__(self):
         return '<Doctor: name=%s>' % repr(self.description)
@@ -253,8 +253,8 @@ class MapDoctor(DeclarativeBase):
     id_doctor = Column(Integer, autoincrement=True, primary_key=True)
     user_id = Column(Integer, unique=True, nullable=False)
     
-    create_date  = Column( TIMESTAMP(timezone=True), nullable=True ,default=sql.func.utc_timestamp())
-    update_date = Column(TIMESTAMP(timezone=True), nullable=True,onupdate=sql.func.utc_timestamp() )
+    create_date  = Column( TIMESTAMP(timezone=True), nullable=True ,default=sql.func.current_timestamp())
+    update_date = Column(TIMESTAMP(timezone=True), nullable=True,onupdate=sql.func.current_timestamp() )
     
     def __repr__(self):
         return '<MapDoctor: name=%s>' % repr(self.id_doctor)
@@ -275,8 +275,8 @@ class Cause (DeclarativeBase):
 
     id_cause = Column(Integer, autoincrement=True, primary_key=True)
     description = Column(Unicode(255))
-    create_date  = Column( TIMESTAMP(timezone=True), nullable=True ,default=sql.func.utc_timestamp())
-    update_date = Column(TIMESTAMP(timezone=True), nullable=True,onupdate=sql.func.utc_timestamp() )
+    create_date  = Column( TIMESTAMP(timezone=True), nullable=True ,default=sql.func.current_timestamp())
+    update_date = Column(TIMESTAMP(timezone=True), nullable=True,onupdate=sql.func.current_timestamp() )
     
     def __repr__(self):
         return '<Cause: name=%s>' % repr(self.description)
@@ -301,8 +301,8 @@ class ItemType (DeclarativeBase):
 
     id_item_type = Column(Integer, autoincrement=True, primary_key=True)
     description = Column(Unicode(255))
-    create_date  = Column( TIMESTAMP(timezone=True), nullable=True ,default=sql.func.utc_timestamp())
-    update_date = Column(TIMESTAMP(timezone=True), nullable=True,onupdate=sql.func.utc_timestamp() )
+    create_date  = Column( TIMESTAMP(timezone=True), nullable=True ,default=sql.func.current_timestamp())
+    update_date = Column(TIMESTAMP(timezone=True), nullable=True,onupdate=sql.func.current_timestamp() )
     
     def __repr__(self):
         return '<Prefix: name=%s>' % repr(self.description)
@@ -327,8 +327,8 @@ class ServicePoint (DeclarativeBase):
 
     id_service_point = Column(Integer, autoincrement=True, primary_key=True)
     description = Column(Unicode(255))
-    create_date  = Column( TIMESTAMP(timezone=True), nullable=True ,default=sql.func.utc_timestamp())
-    update_date = Column(TIMESTAMP(timezone=True), nullable=True,onupdate=sql.func.utc_timestamp() )
+    create_date  = Column( TIMESTAMP(timezone=True), nullable=True ,default=sql.func.current_timestamp())
+    update_date = Column(TIMESTAMP(timezone=True), nullable=True,onupdate=sql.func.current_timestamp() )
     
     def __repr__(self):
         return '<Prefix: name=%s>' % repr(self.description)
@@ -372,8 +372,8 @@ class Person(DeclarativeBase):
     email = Column(Unicode(255))
     
     
-    create_date  = Column( TIMESTAMP(timezone=True), nullable=True ,default=sql.func.utc_timestamp())
-    update_date = Column(TIMESTAMP(timezone=True), nullable=True,onupdate=sql.func.utc_timestamp() )
+    create_date  = Column( TIMESTAMP(timezone=True), nullable=True ,default=sql.func.current_timestamp())
+    update_date = Column(TIMESTAMP(timezone=True), nullable=True,onupdate=sql.func.current_timestamp() )
     
     def __init__(self,id_person = None, id_prefix = None, firstname = None,
     lastname = None,    nickname = None,    id_gender = None,    birthdate = None,    id_marriage = None, 
@@ -462,8 +462,8 @@ class Visit(DeclarativeBase):
     visit_date = Column(DateTime)
     visit_time = Column(DateTime)
     dx = Column(Unicode(255))
-    create_date  = Column( TIMESTAMP(timezone=True), nullable=True ,default=sql.func.utc_timestamp())
-    update_date = Column(TIMESTAMP(timezone=True), nullable=True,onupdate=sql.func.utc_timestamp() )
+    create_date  = Column( TIMESTAMP(timezone=True), nullable=True ,default=sql.func.current_timestamp())
+    update_date = Column(TIMESTAMP(timezone=True), nullable=True,onupdate=sql.func.current_timestamp() )
     
     def __init__(self,id_visit=None, id_person= None,dx=''):
         self.id_visit = id_visit if (id_visit and len(id_visit) >0) else None
@@ -498,8 +498,8 @@ class Appointment(DeclarativeBase):
     id_creator = Column( Integer,ForeignKey('tg_user.user_id'), nullable=False, index=True) 
     creator = relation('User', backref='appointment_user_id')
     description = Column(Text)
-    create_date  = Column( TIMESTAMP(timezone=True), nullable=True ,default=sql.func.utc_timestamp())
-    update_date = Column(TIMESTAMP(timezone=True), nullable=True,onupdate=sql.func.utc_timestamp() )
+    create_date  = Column( TIMESTAMP(timezone=True), nullable=True ,default=sql.func.current_timestamp())
+    update_date = Column(TIMESTAMP(timezone=True), nullable=True,onupdate=sql.func.current_timestamp() )
     
     
     def __repr__(self):
@@ -526,8 +526,8 @@ class VisitService(DeclarativeBase):
     id_person = Column( Integer,ForeignKey('person.id_person'), nullable=False, index=True) 
     person = relation('Person', backref='visit_service_id_person')
     
-    create_date  = Column( TIMESTAMP(timezone=True), nullable=True ,default=sql.func.utc_timestamp())
-    update_date = Column(TIMESTAMP(timezone=True), nullable=True,onupdate=sql.func.utc_timestamp() )
+    create_date  = Column( TIMESTAMP(timezone=True), nullable=True ,default=sql.func.current_timestamp())
+    update_date = Column(TIMESTAMP(timezone=True), nullable=True,onupdate=sql.func.current_timestamp() )
     
     def __init__(self,id_service=None, id_clinic = None, id_service_point=None,id_doctor=None,
                  start_date =datetime.now(), service_date=None,finish_date=None, id_visit=None,id_person =None):
@@ -555,6 +555,33 @@ class VisitService(DeclarativeBase):
         print "update"
         return DBSession.merge(self,load=True)
     
+    @classmethod
+    def updateFinishVisit(cls,id_visit):
+        
+        #ex = update(cls.__table__).where(
+        #                                 sql.and_(
+        #                                 cls.id_visit == str(id_visit), 
+        #                                 cls.finish_date.is_(None), 
+        #                                 func.date(cls.start_date) == date.today()
+        #                                  ).values(finish_date = date.today())
+        
+        #DBSession.execute(ex)
+        
+        
+        data = DBSession.query(cls).filter(cls.id_visit == str(id_visit),\
+                                    cls.finish_date.is_(None),\
+                                    func.date(cls.start_date) == date.today() )\
+                                    .all()
+                                    
+        for d in data:
+            d.finish_date = sql.func.current_timestamp()
+        #                            .update({cls.finish_date:date.today() }, synchronize_session=False);
+    
+    @classmethod
+    def getByVisit(cls,id_visit):
+        return DBSession.query(cls).filter(cls.id_visit == str(id_visit),\
+                                    cls.finish_date.is_(None),\
+                                    func.date(cls.start_date) == date.today() ).all();
     @classmethod
     def getbysearch(cls, search="", idsearch="" ,page=0, page_size=None): 
     
@@ -616,8 +643,8 @@ class VisitVitalSign(DeclarativeBase):
     fh = Column(Text)
     hpi = Column(Text)
     pe = Column(Text)
-    create_date  = Column( TIMESTAMP(timezone=True), nullable=True ,default=sql.func.utc_timestamp())
-    update_date = Column(TIMESTAMP(timezone=True), nullable=True,onupdate=sql.func.utc_timestamp() )
+    create_date  = Column( TIMESTAMP(timezone=True), nullable=True ,default=sql.func.current_timestamp())
+    update_date = Column(TIMESTAMP(timezone=True), nullable=True,onupdate=sql.func.current_timestamp() )
     
     def __init__(self, id_vitalsign=None, id_visit=None, weight=None, temperature=None,pressure=None,pulse=None, height=None,\
                  bmi = None, cc=None, pmh=None, fh=None, hpi=None, pe=None ):
@@ -684,8 +711,8 @@ class VisitOrder(DeclarativeBase):
     order_date = Column(DateTime, default=datetime.now)
     id_staff = Column( Integer,ForeignKey('tg_user.user_id'), nullable=False, index=True) 
     staff = relation('User', backref='visit_order_user_id')
-    create_date  = Column( TIMESTAMP(timezone=True), nullable=True ,default=sql.func.utc_timestamp())
-    update_date = Column(TIMESTAMP(timezone=True), nullable=True,onupdate=sql.func.utc_timestamp() )
+    create_date  = Column( TIMESTAMP(timezone=True), nullable=True ,default=sql.func.current_timestamp())
+    update_date = Column(TIMESTAMP(timezone=True), nullable=True,onupdate=sql.func.current_timestamp() )
     
     def __repr__(self):
         return '<VisitOrder: name=%s>' % repr(self.id_order)
@@ -705,8 +732,8 @@ class VisitBilling(DeclarativeBase):
     id_staff = Column( Integer,ForeignKey('tg_user.user_id'), nullable=False, index=True) 
     staff = relation('User', backref='visit_billing_user_id')
     
-    create_date  = Column( TIMESTAMP(timezone=True), nullable=True ,default=sql.func.utc_timestamp())
-    update_date = Column(TIMESTAMP(timezone=True), nullable=True,onupdate=sql.func.utc_timestamp() )
+    create_date  = Column( TIMESTAMP(timezone=True), nullable=True ,default=sql.func.current_timestamp())
+    update_date = Column(TIMESTAMP(timezone=True), nullable=True,onupdate=sql.func.current_timestamp() )
     
     def __repr__(self):
         return '<VisitBilling: name=%s>' % repr(self.id_order)
@@ -727,8 +754,8 @@ class Item(DeclarativeBase):
     unit  = Column(Unicode(255))
     
     
-    create_date  = Column( TIMESTAMP(timezone=True), nullable=True ,default=sql.func.utc_timestamp())
-    update_date = Column(TIMESTAMP(timezone=True), nullable=True,onupdate=sql.func.utc_timestamp())
+    create_date  = Column( TIMESTAMP(timezone=True), nullable=True ,default=sql.func.current_timestamp())
+    update_date = Column(TIMESTAMP(timezone=True), nullable=True,onupdate=sql.func.current_timestamp())
     
     def __repr__(self):
         return '<Item: name=%s>' % repr(self.itemname)

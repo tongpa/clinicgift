@@ -28,6 +28,8 @@ class VisitController(BaseController):
         
         self.data = model.VisitService(**kw)
         if (self.data.id_visit):
+            print "update visit Service"
+            model.VisitService.updateFinishVisit(self.data.id_visit)
             self.data.save()
         else:
             self.visit = model.Visit(id_person=self.data.id_person)

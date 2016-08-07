@@ -27,7 +27,7 @@
 		
         return [
                 new Ext.create('clinic.module.SystemStatus'),
-                new Ext.create('clinic.module.GridWindow'),
+              //  new Ext.create('clinic.module.GridWindow'),
                 new Ext.create('clinic.module.PersonWindow'),
                 new Ext.create('clinic.module.AppointmentWindow'),
                 new Ext.create('clinic.module.VisitWindow'),
@@ -96,8 +96,8 @@
         console.log('gettaskbarconfig');
         return Ext.apply(ret, {
             quickStart: [
-                { name: 'Accordion Window', iconCls: 'accordion', module: 'acc-win' },
-                { name: 'Grid Window', iconCls: 'icon-grid', module: 'grid-win' }
+                { name: 'Person', iconCls: 'icon-grid', module: 'person-win' },
+                { name: 'Visit Service', iconCls: 'icon-grid', module: 'gridpatientservice-win' }
             ],
             trayItems: [
                 { xtype: 'trayclock', flex: 1 }

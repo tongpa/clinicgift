@@ -6,6 +6,7 @@ from tg import expose, redirect, validate, flash, url
 from clinicgift import model
 
 from clinicgift.lib.base import BaseController
+import sys;
 # from clinicgift.model import DBSession
 __all__ = ['ScriptModelController']
 class ScriptModelController(BaseController):
@@ -73,6 +74,7 @@ class ScriptModelController(BaseController):
     
     @expose('json')
     def getPersonData(self, *args, **kw):
+        reload(sys).setdefaultencoding('utf8');
         self.data,self.len = model.Person.getbysearch(search =kw.get('keysearch'),  idsearch = kw.get('idsearch'));
         return dict(clinic=self.data , total = self.len);
     
@@ -89,6 +91,7 @@ class ScriptModelController(BaseController):
     
     @expose('json')
     def getItemData(self, *args, **kw):
+        reload(sys).setdefaultencoding('utf8');
         self.data,self.len = model.Item.getbysearch(search =kw.get('keysearch'), idsearch = kw.get('idsearch'));
         return dict(clinic=self.data , total = self.len);
     
